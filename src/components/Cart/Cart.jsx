@@ -7,7 +7,7 @@ import useStyles from './styles';
 import CartItem from './CartItem/CartItem';
 
 
-const Cart = ({ cart }) => {
+const Cart = ({ cart, handleUpdateCartQty, handleRemoveFromCart, handleEmptyCart }) => {
     const classes = useStyles(); 
 
     const EmptyCart = () => (
@@ -22,7 +22,7 @@ const Cart = ({ cart }) => {
             {
                 cart.line_items.map((item) => (
                     <Grid item sx={12} sm={3} key={item.id}>
-                        <CartItem item={item} />
+                        <CartItem item={item} onUpdateCartQty={handleUpdateCartQty} onRemovefromCart={handleRemoveFromCart} />
                     </Grid>
                 ))
             }
@@ -37,7 +37,9 @@ const Cart = ({ cart }) => {
                 size="large" 
                 type="button" 
                 variant="contained"
-                color="secondary">Empty Cart
+                color="secondary"
+                onClick={handleEmptyCart}
+                >Empty Cart
                 </Button>
 
                 <Button 
